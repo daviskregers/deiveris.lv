@@ -17,7 +17,7 @@ class SocialLinks extends Component {
         },
         {
             key: "linkedin",
-            link: "https://www.linkedin.com/in/davis-kregers-5257813b/",
+            link: "https://www.linkedin.com/in/daviskregers/",
             icon: ['fab', 'linkedin']
         }
     ];

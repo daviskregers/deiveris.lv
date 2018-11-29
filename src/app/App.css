@@ -1,0 +1,11 @@
+.App {
+    text-align: center;
+    margin-top: 150px;
+}
+
+.App .Logo img {
+    max-width: 100%;
+    width: 230px;
+    border-radius: 230px;
+    border: 3px solid #ffffff;
+}

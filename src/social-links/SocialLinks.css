@@ -16,3 +16,11 @@ ul li:not(:first-child) {
 a {
     color: #fff;
 }
+
+a:hover {
+    color: #00a3e8;
+}
+
+a:active {
+    color: #046c98;
+}

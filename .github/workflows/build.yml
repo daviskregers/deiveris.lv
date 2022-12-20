@@ -1,5 +1,10 @@
 name: Build and Test React Application
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 concurrency:
   group: ${{ github.ref }}
   cancel-in-progress: true
@@ -13,6 +18,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.build-publish.outputs.page_url }}
 
     steps:
       - uses: actions/checkout@v3
@@ -24,3 +32,7 @@ jobs:
         run: |
           npm ci
           npm run build --if-present
+      - id: build-publish
+        uses: bitovi/github-actions-react-to-ghp@v1.2.0
+        with:
+          path: dist

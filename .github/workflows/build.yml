@@ -1,9 +1,4 @@
-name: Build and Test React Application
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+name: Deploy to Github Pages
 
 concurrency:
   group: ${{ github.ref }}
@@ -15,24 +10,19 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  deploy:
     environment:
       name: github-pages
       url: ${{ steps.build-publish.outputs.page_url }}
-
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: latest
-      - name: npm ci, build and test
-        run: |
-          npm ci
-          npm run build --if-present
-      - id: build-publish
-        uses: bitovi/github-actions-react-to-ghp@v1.2.0
-        with:
-          path: dist
+    - id: build-publish
+      uses: bitovi/github-actions-react-to-ghp@v1.2.0
+      with:
+        path: dist
